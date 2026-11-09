@@ -8,6 +8,7 @@ private:
     vector<int> values;
     vector<int> result;
     vector<int> candidates;
+    int n;
     int target;
     int calls;
     bool isSolution;
@@ -15,7 +16,7 @@ private:
     void search(int index, int currentSum) {
         calls++;
 
-        if (index == values.size()) {
+        if (index == n) {
             if (currentSum == target) {
                 result = candidates;
                 isSolution = true;
@@ -33,7 +34,7 @@ private:
 
 public:
     BaselineSolver(const vector<int>& values, int target)
-    : values(values), target(target), calls(0), isSolution(false) {}
+    : values(values), n((int)values.size()), target(target), calls(0), isSolution(false) {}
 
     void solve() {
         result.clear();
@@ -47,7 +48,7 @@ public:
         if (isSolution) {
             cout << "Solution found: ";
 
-            for (int i = 0; i < result.size(); i++) {
+            for (int i = 0; i < (int)result.size(); i++) {
                 if (i > 0) cout << " ";
                 cout << values[result[i]];
             }
